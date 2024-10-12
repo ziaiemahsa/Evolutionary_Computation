@@ -1,10 +1,9 @@
 function Differential_Evolution_Optimization
-    % Parameters
-    num_runs = 10; % Number of independent DE runs
+]    num_runs = 10; 
     
     for run = 1:num_runs
-        [population, option] = initialize_population; % Initialize population
-        population = evaluate_population(population, option); % Evaluate initial population fitness
+        [population, option] = initialize_population; 
+        population = evaluate_population(population, option); 
         
         t = 1;
         while t <= option.MaxIt
@@ -50,21 +49,16 @@ function Differential_Evolution_Optimization
             t = t + 1;
         end
         
-        % Store best fitness for each run
         fitness_across_runs(run, :) = best_fitness;
     end
     
-    % Calculate the mean fitness across runs
     mean_fitness = mean(fitness_across_runs);
     
-    % Plot mean fitness evolution
     plot_fitness(mean_fitness);
     
-    % Display final fitness for each run at iteration 100
     disp(fitness_across_runs(:, 100));
 end
 
-% Initialize population with random vectors
 function [population, option] = initialize_population
     option.np = 10;  % Population size
     option.nv = 30;  % Dimensionality of vectors
@@ -87,12 +81,10 @@ function population = evaluate_population(population, option)
     end
 end
 
-% Plot fitness evolution over iterations
 function plot_fitness(mean_fitness)
     figure;
     plot(mean_fitness, '--*', 'LineWidth', 1.5, 'MarkerSize', 6);
     
-    % Plot styling
     title('Mean Fitness Evolution (10 Runs)', 'FontSize', 14);
     xlabel('Iteration', 'FontSize', 12);
     ylabel('Mean Fitness', 'FontSize', 12);
