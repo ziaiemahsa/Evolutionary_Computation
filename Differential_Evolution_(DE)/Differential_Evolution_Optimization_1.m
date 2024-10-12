@@ -1,16 +1,13 @@
 function Differential_Evolution_Optimization
-    % Parameters
-    num_experiments = 10;  % Number of independent runs
-    max_iterations = 1000; % Maximum number of iterations
+    num_experiments = 10;  
+    max_iterations = 1000; 
     
-    % Initialize matrices to store fitness results across experiments
     best_fitness_all_experiments = zeros(num_experiments, max_iterations);
     random_fitness_all_experiments = zeros(num_experiments, max_iterations);
     
-    % Run DE for multiple experiments
     for experiment = 1:num_experiments
-        [population, params] = initialize_population; % Initialize population
-        population = evaluate_fitness(population, params); % Evaluate fitness
+        [population, params] = initialize_population; 
+        population = evaluate_fitness(population, params); 
         
         for iter = 1:max_iterations
             % Identify the best individual in the population
@@ -58,16 +55,13 @@ function Differential_Evolution_Optimization
             random_fitness(iter) = random_individual.fitness;
         end
         
-        % Store fitness results for this experiment
         best_fitness_all_experiments(experiment, :) = best_fitness;
         random_fitness_all_experiments(experiment, :) = random_fitness;
     end
     
-    % Compute and plot the average fitness over all experiments
     plot_mean_fitness(best_fitness_all_experiments, random_fitness_all_experiments, max_iterations);
 end
 
-% Population initialization
 function [population, params] = initialize_population
     params.population_size = 30;
     params.vector_length = 30;
@@ -83,25 +77,21 @@ function [population, params] = initialize_population
     end
 end
 
-% Fitness evaluation (sum of squares minimization)
 function population = evaluate_fitness(population, params)
     for i = 1:params.population_size
         population(i).fitness = sum((population(i).vector).^2);
     end
 end
 
-% Plot the mean fitness over iterations
 function plot_mean_fitness(best_fitness_all_experiments, random_fitness_all_experiments, max_iterations)
     avg_best_fitness = mean(best_fitness_all_experiments);
     avg_random_fitness = mean(random_fitness_all_experiments);
     
-    % Improved plot
     figure;
     plot(1:max_iterations, avg_best_fitness, '--o', 'LineWidth', 1.5, 'DisplayName', 'Mean Best Fitness');
     hold on;
     plot(1:max_iterations, avg_random_fitness, '-*', 'LineWidth', 1.5, 'DisplayName', 'Mean Random Fitness');
     
-    % Enhanced plot styling
     title('Average Fitness Evolution (10 Runs)', 'FontSize', 14);
     xlabel('Iteration', 'FontSize', 12);
     ylabel('Fitness', 'FontSize', 12);
