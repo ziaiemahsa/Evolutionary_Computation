@@ -60,13 +60,13 @@ function Differential_Evolution_Optimization
 end
 
 function [population, option] = initialize_population
-    option.np = 10;  % Population size
-    option.nv = 30;  % Dimensionality of vectors
-    option.MaxIt = 1000; % Maximum iterations
-    option.pr = 0.5; % Crossover probability
-    option.beta = 1; % Mutation factor
-    option.Maxvar = 5; % Upper bound of variables
-    option.Minvar = -5; % Lower bound of variables
+    option.np = 10;  
+    option.nv = 30;  
+    option.MaxIt = 1000; 
+    option.pr = 0.5; 
+    option.beta = 1; 
+    option.Maxvar = 5; 
+    option.Minvar = -5;
     
     % Create population with uniformly random vectors
     for i = 1:option.np
