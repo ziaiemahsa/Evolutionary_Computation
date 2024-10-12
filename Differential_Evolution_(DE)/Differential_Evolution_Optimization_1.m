@@ -67,7 +67,7 @@ function [population, params] = initialize_population
     params.vector_length = 30;
     params.MaxIterations = 1000;
     params.crossover_probability = 0.5;
-    params.scaling_factor = 0.8; % More appropriate scaling factor
+    params.scaling_factor = 0.8; 
     params.max_value = 5;
     params.min_value = -5;
 
